@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+
+
+<head>
+    <title><h:outputText value="#{msg.welcomeTitle}" /></title>
+</head>
+
+<body>
+<h:form>
+<h:panelGrid columns="2">
+<h:outputLabel value="Nombres"/>
+<h:inputText value="#{personaBean.persona.nombre}"></h:inputText>
+
+<h:outputLabel value="Apellidos"/>
+<h:inputText value="#{personaBean.persona.apellido}"></h:inputText>
+
+<h:outputLabel value="Sexo"/>
+<h:selectOneMenu value="#{personaBean.persona.sexo}">
+<f:selectItem itemValue="M" itemLabel="Masculino"></f:selectItem>
+<f:selectItem itemValue="F" itemLabel="Femenino"></f:selectItem>
+</h:selectOneMenu>
+
+</h:panelGrid>
+
+<h:commandButton value="Agregar" actionListener="#{personaBean.agregarPersona}"/>
+
+<h:dataTable value="#{personaBean.lstPersonas}" var="per">
+<h:column>
+<h:outputLabel value="#{per.nombre}"/>
+</h:column>
+
+<h:column>
+<h:outputLabel value="#{per.apellido}"/>
+</h:column>
+
+<h:column>
+<h:outputLabel value="#{per.sexo}"/>
+</h:column>
+
+<h:column>
+<h:commandLink value="Eliminar" actionListener="#{personaBean.eliminarPersona(per)}"></h:commandLink>
+</h:column>
+
+</h:dataTable>
+</h:form>
+</body>
+</html>
